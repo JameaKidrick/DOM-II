@@ -11,39 +11,35 @@ const images = document.querySelectorAll('img')
 
 
 
-/*************************** EVENT 1 ***************************/
+/*************************** EVENT 1: MOUSEENTER AND MOUSELEAVE ***************************/
 headerimg.addEventListener('mouseenter', e => {
-    // headerimg.style.transform = 'scale(1.5)';
-    // headerimg.style.transition = 'transform 0.5s';
     headerimg.style.transform = 'rotate(180deg)';
 })
 
 headerimg.addEventListener('mouseleave', e => {
-    // headerimg.style.transform = 'scale(1.0)';
-    // headerimg.style.transition = 'transform 0.5s';
     headerimg.style.transform = 'rotate(360deg)';
 })
 
-/*************************** EVENT 2 ***************************/
+/*************************** EVENT 2: WHEEL ***************************/
 largesubtitle.addEventListener('wheel', e => {
     e.preventDefault();
     largesubtitle.style.transform = 'scale(2)';
 })
 
-/*************************** EVENT 3 ***************************/
+/*************************** EVENT 3: RESIZE ***************************/
 changeColor.forEach(item => {
     window.addEventListener('resize', e => {
         item.style.color = 'red';
     })
 })
 
-/*************************** EVENT 4 ***************************/
+/*************************** EVENT 4: SCROLL ***************************/
 window.addEventListener('scroll', e => {
     backcolor.style.background = '#FFEBCD';
     footercolor.style.background = 'white';
 })
 
-/*************************** EVENT 5 ***************************/
+/*************************** EVENT 5: KEYDOWN ***************************/
 window.addEventListener('keydown', e => {
     header.style.background = '#000';
     title.style.color = 'white';
@@ -56,7 +52,8 @@ links.forEach(items => {
     
 })
 
-/*************************** EVENT 6 ***************************/
+/*************************** EVENT 6: DBLCLICK AND CLICK ***************************/
+// INCLUDES STOP PROPAGATION AND PREVENT DEFAULT
 btn.forEach(items => {
     items.addEventListener('dblclick', e => {
         items.style.color = 'red';
@@ -70,21 +67,17 @@ btn.forEach(items => {
 })
 
 backcolor.addEventListener('click', e => {
-    backcolor.style.background = 'black';
+    backcolor.style.background = 'grey';
     e.stopPropagation();
 })
 
 links.forEach(items => {
-    e.preventDefault();
+    items.addEventListener('click', e => {
+        e.preventDefault();
+    })
 })
 
-// const top = document.querySelector('body');
-// const loading = document.createElement('div');
-// loading.textContent = 'Loaded';
-// top.prepend(loading);
-// loading.style.background = 'red';
-
-/*************************** EVENT 7 ***************************/
+/*************************** EVENT 7: DRAG AND DRAGEND ***************************/
 images.forEach(items => {
     items.addEventListener('drag', e => {
         items.style.border = '5px solid red';
@@ -97,21 +90,21 @@ images.forEach(items => {
     })
 })
 
-/*************************** EVENT 8 ***************************/
-// window.addEventListener('load', e => {
-//     window.alert('Loading...');
-// })
+/*************************** EVENT 8: LOAD ***************************/
+window.addEventListener('load', e => {
+    window.alert('Loading...');
+})
 
-/*************************** EVENT 9 ***************************/
+/*************************** EVENT 9: MOUSEOVER ***************************/
 title.addEventListener('mouseover', e => {
     title.style.transform = 'scale(1.5)';
 })
 
-/*************************** EVENT 10 ***************************/
-const text = document.querySelector('header p');
+/*************************** EVENT 10: COPY ***************************/
+const text = document.querySelectorAll('p');
 
-text.addEventListener('select', message());
-function message (e){
-    const selection = e.target.value.substring(e.target.selectionStart, e.target.selectionEnd);
-    window.alert(`You have selected: ${selection}`)
-}
+text.forEach(items => {
+    items.addEventListener('copy', e => {
+        window.alert('Copied to Clipboard')
+    })
+})
